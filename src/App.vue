@@ -13,6 +13,7 @@
       <div class="panel__right">
         <div class="layers-container"></div>
         <div class="styles-container"></div>
+        <div class="traits-container"></div>
       </div>
     </div>
     <div id="blocks"></div>
@@ -85,9 +86,19 @@ export default {
                   command: "show-styles",
                   togglable: false,
                 },
+                {
+                  id: "show-traits",
+                  active: true,
+                  label: "Traits",
+                  command: "show-traits",
+                  togglable: false,
+                },
               ],
             },
           ],
+        },
+        traitManager: {
+          appendTo: ".traits-container",
         },
         selectorManager: {
           appendTo: ".styles-container",
@@ -242,6 +253,18 @@ export default {
             },
           },
         ],
+      });
+      this.editor.Commands.add("show-traits", {
+        getTraitsEl(editor) {
+          const row = editor.getContainer().closest(".editor-row");
+          return row.querySelector(".traits-container");
+        },
+        run(editor) {
+          this.getTraitsEl(editor).style.display = "";
+        },
+        stop(editor) {
+          this.getTraitsEl(editor).style.display = "none";
+        },
       });
     },
   },
