@@ -6,40 +6,42 @@
 
 <script>
 import grapesjs from "grapesjs";
-// import greapejspreset from "grapesjs-preset-webpage";
+import "grapesjs/dist/css/grapes.min.css";
+
 export default {
   data() {
     return {
       editor: null,
     };
   },
-
   mounted() {
-    this.editor = grapesjs.init({
-      // Indicate where to init the editor. You can also pass an HTMLElement
-      container: "#gjs",
-      // Get the content for the canvas directly from the element
-      // As an alternative we could use: `components: '<h1>Hello World Component!</h1>'`,
-      fromElement: true,
-      // Size of the editor
-      height: "1000px",
-      width: "auto",
-      // Disable the storage manager for the moment
-      storageManager: false,
-      // Avoid any default panel
-      panels: { defaults: [] },
-    });
+    this.start();
+  },
+  methods: {
+    start() {
+      this.editor = grapesjs.init({
+        // Указываем, где запустить редактор
+        container: "#gjs",
+        // Получаем содержимое холста прямо из элемента
+        fromElement: true,
+        // Размер редактора
+        height: "300px",
+        width: "auto",
+        // Отключаем на время диспетчер хранилища
+        storageManager: false,
+        // Избегаем любой панели по умолчанию
+        panels: { defaults: [] },
+      });
+    },
   },
 };
 </script>
 
 <style>
-/* Let's highlight canvas boundaries */
 #gjs {
-  border: 3px solid rgb(163, 2, 2);
+  border: 3px solid #444;
 }
 
-/* Reset some default styling */
 .gjs-cv-canvas {
   top: 0;
   width: 100%;
